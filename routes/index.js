@@ -74,8 +74,9 @@ router.post('/users/:id/post/:postId/comment', function(req, res, next) {
         		if(user.posts[i]._id == req.params.postId) {
         			found = true;
         			user.posts[i].comments.push(req.body);
-        			user.save();
-        			res.json(user.posts[i]);
+        			user.save(function() {
+        				res.json(user.posts[i]);
+        			});
         			break;
         		}
         	}

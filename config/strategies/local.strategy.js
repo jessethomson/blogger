@@ -16,11 +16,13 @@ module.exports = function () {
 							done(null, false, {message:"Bad password"});
 						}
 						else {
-							console.log(results)
-							if(results.local.password === password) {
-								var user = results;
-								user.local.password == null;
-								done(null, user);							
+							if(results) {
+								console.log(results)
+								if(results.local.password === password) {
+									var user = results;
+									user.local.password == null;
+									done(null, user);							
+								}
 							}
 							else {
 								done(null, false, {message:"Bad password"});
