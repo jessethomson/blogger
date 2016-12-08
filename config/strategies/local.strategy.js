@@ -19,6 +19,7 @@ module.exports = function () {
 							console.log(results)
 							if(results.local.password === password) {
 								var user = results;
+								user.local.password == null;
 								done(null, user);							
 							}
 							else {

@@ -4,7 +4,6 @@ var User = require("../models/userModel");
 var passport = require("passport");
 
 router.get('/', function(req, res, next) {
-	console.log("Yahooo!")
 	if(req.user) {
 		res.redirect("/users/" + req.user._id)
 	}
@@ -27,8 +26,13 @@ router.get('/users', function(req, res, next) {
 
 router.get('/users/:id', function(req, res, next) {
 	
-	User.findById(req.params.id, function(error, pageOwner) {
-        if(pageOwner) {
+	User.findById(req.params.id, function(error, pOwner) {
+        if(pOwner) {
+        	var pageOwner = {
+        		_id: pOwner._id,
+        		displayName: pOwner.displayName,
+        		posts: pOwner.posts
+        	}
             res.render('users', { authUser: req.user, pageOwner: pageOwner});
         }
         else {
@@ -65,7 +69,6 @@ router.post('/users/:id/post/:postId/comment', function(req, res, next) {
 	User.findById(req.params.id, 
 		function(error, user) {
         if(user) {
-        	console.log(user.posts)
         	var found = false;
         	for(var i=0; i<user.posts.length; i++) {
         		if(user.posts[i]._id == req.params.postId) {
@@ -109,14 +112,11 @@ router.route("/signUp").post(function(req,res) {
 
     user.local = {}
     user.local.password = req.body.password;
-    // user.save();
 	user.save(function(err, results) {
 		if(err) {
 			console.log(err);
 		}
 		else {
-			console.log(results);
-			console.log(user)
 			req.login(user, function() {
 				res.redirect("/");
 			});
