@@ -1,0 +1,39 @@
+html
+	head
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel="stylesheet" href="/scripts/bootstrap-social.css")
+		link(rel="stylesheet" href="/stylesheets/style.css")
+		script(src="https://use.fontawesome.com/09b69cd0b5.js")
+	body.container-fluid
+		.row
+			h1.page-header
+				span(style="padding:30px;color:white;")
+					| #{title}
+			h2(style="color:lightgrey;margin:30px;") Login to start using <i>your</i> free blog!
+		.row
+			.col-md-4.col-md-offset-2.auth-block
+				h3
+					| Sign in or 
+					a(style="text-decoration:none;cursor:pointer;" href="/register") Register
+				form(action="/signIn" method="post")
+					.form-group
+						input.my-form-control(type="email" placeholder="Email" name="userName")
+					.form-group
+						input.my-form-control(type="password" placeholder="Password" name="password")
+					button.btn.my-btn.pull-right(type="submit" style="width:40%;") Sign In
+		.row
+			.col-md-4.col-md-offset-2
+				.strike
+					span(style="color:white;margin:15px;font-size:16px;") &nbsp;<b>Or</b>&nbsp;
+		.row
+			.col-md-4.col-md-offset-2
+				.col-md-10.col-md-offset-1
+					a.btn.btn-block.btn-social.btn-facebook(href="/auth/facebook")
+						span.fa.fa-facebook 
+						| Sign in with Facebook
+					a.btn.btn-block.btn-social.btn-google(href="/auth/google")
+						span.fa.fa-google 
+						| Sign in with Google
+					a.btn.btn-block.btn-social.btn-twitter(href="/auth/twitter")
+						span.fa.fa-twitter 
+						| Sign in with Twitter

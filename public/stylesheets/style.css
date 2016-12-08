@@ -1,0 +1,169 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url("/images/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: white;
+}
+
+.strike > span:before {
+    right: 100%;
+}
+
+.strike > span:after {
+    left: 100%;
+}
+
+.my-btn {
+	color: white;
+	border: 2px solid white;
+	border-radius: 6px;
+	background: none;
+}
+
+.my-btn:hover, .my-btn:focus {
+	color: white;
+	border-color: white;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px white;
+	outline: 0 none;
+}
+
+.my-form-control {
+	color: white;
+	padding: 6px 12px;
+	width: 100%;
+	font-size: 14px;
+	border: 2px solid white;
+	border-radius: 6px;
+	background: none;
+}
+
+.auth-block {
+	background: rgba(0,0,0,0.6);
+	padding:20px;
+	border-radius:10px;
+	border: 3px solid white;
+	color:white;
+}
+
+#bootstrap-overrides input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, textarea:focus{
+  border-color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px white;
+  outline: 0 none;
+}
+
+.user-icon {
+	border: 2px solid white;
+	border-radius: 100%;
+	margin: 10px; 
+}
+
+.dark {
+	background:rgba(0,0,0,0.6);
+}
+
+.auth-btn {
+	margin-top:30px;
+}
+
+.post-block {
+	color: white;
+	/*width: 100%;*/
+	font-size: 14px;
+	border: 2px solid lightgrey;
+	border-radius: 6px;
+	background:rgba(0,0,0,0.6);
+	cursor: default;
+	border-bottom-left-radius: 0px;
+}
+
+.post-heading {
+	border-bottom: 2px solid white;
+	padding: 15px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.post-body {
+	padding: 15px;
+}
+
+.post-footer {
+	color: white;
+	text-align: center;
+	border: 2px solid lightgrey;
+	background:rgba(0,0,0,0.6);
+	width: 40%;
+	border-radius: 6px;
+	border-top: none;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	padding: 10px;
+	float:left;
+}
+
+.post-footer i {
+	padding: 1px;
+}
+
+.comment {
+	color: white;
+	border: 2px solid lightgrey;
+	border-radius: 6px;
+	width: 55%;
+	margin: 2px;
+}
+
+.comment-title {
+	border-bottom: 2px solid lightgrey;
+	padding: 8px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.comment-body {
+	padding: 8px;
+}
+
+.new-post {
+	color: white;
+	border: 2px solid lightgrey;
+	background:rgba(0,0,0,0.6);
+	border-radius: 6px;
+	padding: 10px;
+	margin-bottom: 50px;
+}
+
+.new-post i {
+	padding: 1px;
+}
+
+.link:hover {
+	color: white;
+	border-color: white;
+	background:rgba(0,0,0,0.75);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px white;
+	cursor: pointer;
+}

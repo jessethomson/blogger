@@ -1,0 +1,70 @@
+html
+	head
+		if authUser
+			script.
+				var authUser = !{JSON.stringify(authUser).replace(/<\//g, "<\\/")}
+		if pageOwner
+			script.
+				var pageOwner = !{JSON.stringify(pageOwner).replace(/<\//g, "<\\/")}
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel="stylesheet" href="/scripts/bootstrap-social.css")
+		link(rel="stylesheet" href="/stylesheets/style.css")
+		script(src="https://use.fontawesome.com/09b69cd0b5.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js")
+		script(src="/javascripts/blog.js")
+	body.container(ng-app="myApp", ng-controller="BlogCtrl")
+		.row
+			.col-md-10
+				h1(style="color:white;text-align:center;")
+					| {{ pageOwner.displayName }}'s Blog
+				h3(ng-show="{{authUser._id === pageOwner._id}}" style="color:white;text-align:center;")
+					| Share this url with family and friends!
+				div(style="margin-bottom:15px;")
+					.pull-left(style="margin-bottom:-10px;")
+						a(href="{{ authUser._id ? '/users/' + authUser._id : '/login'}}")
+							img.user-icon(style="background:white" width="50" height="50" ng-src="{{authUser.image || '/images/user.png'}}")
+						label(style="color:white;") 
+							| {{authUser.displayName }}
+				.pull-right
+					div(ng-show="authUser")
+						a.btn.my-btn.dark.auth-btn(href="/logout")
+							| Logout
+					div(ng-hide="authUser")
+						a.btn.my-btn.dark.auth-btn(href="/login")
+							| Login
+			.pull-right(style="position:fixed;right:30px;")
+				h1.dark(style="color:white;padding:5px;border-radius:5px;")
+					| Public Blogs
+				a.my-form-control.dark.link(ng-repeat="user in allUsers" style="display:block;width:100%;color:lightgrey;text-decoration:none;font-size:14px;" href="{{ $window.location.origin + '/users/' + user._id}}")
+						| {{ user.displayName }}'s Blog
+		.row(style="margin-top:5px;")
+			.col-md-10
+				div(ng-show="{{authUser._id == pageOwner._id}}")
+					.new-post
+						.input-group
+							input.my-form-control(ng-model="newPostTitle" type="text" placeholder='What do you want to call this?')
+							textarea.my-form-control(ng-model="newPostBody" rows="3" placeholder='Deep thoughts go here...' style="margin-top:5px;resize:none;")
+							span.input-group-btn
+								button.btn.my-btn(type='button' style="border-top-left-radius: 6px;border-bottom-left-radius: 6px;margin-left:10px;padding-top:40px;padding-bottom:40px;" ng-click="addPost()") 
+									i.fa.fa-plus
+				.row(ng-repeat="post in posts" style="margin-bottom: 45px;")
+					.post-block
+						.post-heading
+							| {{ post.title}}
+							.pull-right(style="font-weight:initial;") {{ post.date }}
+						.post-body
+							| {{ post.body }}
+					.post-footer
+						.input-group
+							textarea.my-form-control(rows="3" placeholder='What do you think?' ng-model="newComments[$index]" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;resize:none;")
+							span.input-group-btn(style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;")
+								button.btn.my-btn(type='button' style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;padding-top:22px;padding-bottom:22px;" ng-click="addComment($index)") 
+									i.fa.fa-plus
+					div(ng-repeat="comment in post.comments" style="margin-top:10px;")
+						.comment.dark.pull-right
+							.comment-title 
+								| {{ comment.owner || "Anonymous" }}
+							.comment-body
+								| {{ comment.body }}
+								br
+								.pull-right(style="margin-bottom:5px;") {{ comment.date }}
