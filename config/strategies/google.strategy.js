@@ -7,7 +7,7 @@ module.exports = function() {
     passport.use(new GoogleStrategy({
         clientID: '1651225116-3hnnrn62q4eqrklsg84vdngvc7sg8koj.apps.googleusercontent.com',
         clientSecret: 'Jk-jhlfwWz6NWYkoeMDkKe2-',
-        callbackURL: 'http://localhost:3000/auth/google/callback'},
+        callbackURL: 'http://jessethomson.net:3000/auth/google/callback'},
         function(req, accessToken, refreshToken, profile, done) {
 
             var query = {
